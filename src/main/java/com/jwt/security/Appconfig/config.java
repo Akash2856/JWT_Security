@@ -13,16 +13,16 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Configuration
 public class config {
-    @Bean
-    public UserDetailsService userDetailsService() {
-        System.out.println("varification of shikhar");
-        UserDetails userDetails = User.builder().
-                username("shikhar")
-                .password(passwordEncoder().encode("gupta")).roles("ADMIN").
-                build();
-        System.out.println("end of varification of shikhar");
-        return new InMemoryUserDetailsManager(userDetails);
-    }
+//    @Bean
+//    public UserDetailsService userDetailsService() {
+//        System.out.println("varification of shikhar");
+//        UserDetails userDetails = User.builder().
+//                username("shikhar")
+//                .password(passwordEncoder().encode("gupta")).roles("ADMIN").
+//                build();
+//        System.out.println("end of varification of shikhar");
+//        return new InMemoryUserDetailsManager(userDetails);
+//    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {

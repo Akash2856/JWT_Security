@@ -1,7 +1,7 @@
 package com.jwt.security.controllers;
 
-import com.jwt.security.UserService;
-import com.jwt.security.model.User;
+import com.jwt.security.service.UserService;
+import com.jwt.security.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

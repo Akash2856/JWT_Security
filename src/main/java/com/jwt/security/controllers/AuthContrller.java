@@ -1,8 +1,10 @@
-package com.jwt.security.Appconfig;
+package com.jwt.security.controllers;
 
+import com.jwt.security.entities.User;
 import com.jwt.security.model.JwtRequest;
 import com.jwt.security.model.JwtResponse;
 import com.jwt.security.security.JwtHelper;
+import com.jwt.security.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,8 @@ public class AuthContrller {
     @Autowired
     private AuthenticationManager manager;
 
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private JwtHelper helper;
@@ -40,6 +44,7 @@ public class AuthContrller {
 
         UserDetails userDetails = userDetailsService.loadUserByUsername(request.getEmail());
         System.out.println("user details ---> "+userDetails);
+        //org.springframework.security.core.userdetails.User [Username=shikhar, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]]
         String token = this.helper.generateToken(userDetails);
 
         JwtResponse response = JwtResponse.builder()
@@ -69,5 +74,10 @@ public class AuthContrller {
     @ExceptionHandler(BadCredentialsException.class)
     public String exceptionHandler() {
         return "Credentials Invalid !!";
+    }
+
+    @PostMapping("/create-user")
+    public User createUser(@RequestBody User user){
+        return userService.createUser(user);
     }
 }
